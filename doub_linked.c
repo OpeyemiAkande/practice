@@ -38,17 +38,34 @@ void create_list(void)
 		printf("To enter data press 1, otherwise 0\n");
 		scanf("%d", &choice);
 	}
-	temp->next = temp->prev;
 
+}
+
+void insert_at_beg()
+{
+	struct node *new_node;
+	int data;
+
+	printf("Enter data: ");
+	scanf("%d", &data);
+
+	new_node = (struct node *)malloc(sizeof(struct node));
+	new_node->prev = 0;
+	new_node->data = data;
+	new_node->next = head;
+	head->prev = new_node;
+	head =new_node;
 }
 
 int main()
 {
 	create_list();
+	insert_at_beg();
 	temp = head;
-	/* printf("%d\n", head->data); */
+
 	while(temp != 0)
 	{
+		printf("%d\n", temp->data);
 		temp = temp->next;
 	}
 	while(temp != 0)
